@@ -1,0 +1,27 @@
+# config.yaml
+data_dir: "data/processed_pubmed"
+train_file: "train_encoded_clean.csv"
+val_file: "val_encoded_clean.csv"
+test_file: "test_encoded_clean.csv"
+
+# BART settings
+bart_model_name: "facebook/bart-large-cnn"
+
+# Pegasus PubMed (fine-tuned)
+pegasus_model_name: "Kevincp560/pegasus-arxiv-finetuned-pubmed"
+
+# general training
+output_dir: "checkpoints"
+num_train_epochs: 3
+per_device_train_batch_size: 2
+per_device_eval_batch_size: 2
+learning_rate: 3e-5
+weight_decay: 0.01
+logging_steps: 100
+evaluation_strategy: "epoch"
+save_strategy: "epoch"
+
+max_input_length: 512
+max_target_length: 128
+predict_with_generate: true
+fp16: true
