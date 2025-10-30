@@ -6,13 +6,7 @@ from tqdm import tqdm
 from datasets import load_metric
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
-
-
-def load_csv(path, text_col='article_text', summary_col='abstract_text'):
-    import pandas as pd
-    df = pd.read_csv(path).dropna(subset=[text_col, summary_col])
-    return df
-
+from Load_data import load_csv_to_hf
 
 def evaluate_transformer(
     model_name,
@@ -32,7 +26,7 @@ def evaluate_transformer(
     model.to(device)
     model.eval()
 
-    df = load_csv(test_csv)
+    df = load_csv_to_hf(test_csv)
     rouge = load_metric("rouge")
 
     preds, refs = [], []
